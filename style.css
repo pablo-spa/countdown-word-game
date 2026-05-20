@@ -164,7 +164,9 @@ nav {
 .side-panel {
   width: 180px;
   min-width: 180px;
+  max-width: 180px;   /* NEW: locks it so .glass width:100% can't expand it */
   flex-shrink: 0;
+  flex-grow: 0;       /* NEW: never grows beyond 180px */
   padding: 16px;
 }
 
@@ -179,6 +181,11 @@ nav {
     0 8px 32px rgba(0,0,0,0.4),
     inset 0 1px 0 rgba(255,255,255,0.07);
   padding: 20px;
+  /* REMOVED: width: 100% — was making the leaderboard expand full width */
+}
+
+/* NEW: only glass cards inside the game column get full width */
+.main-area .glass {
   width: 100%;
 }
 
