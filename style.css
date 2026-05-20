@@ -180,3 +180,49 @@ input[type="text"]::placeholder {
   color: var(--teal);
   letter-spacing: 3px;
 }
+
+/* ── About page ────────────────────────────────────────────── */
+h2 {
+  color: var(--lavender);
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+p {
+  color: var(--subtext);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.stats-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 140px;
+  background: rgba(180, 190, 254, 0.07);
+  border: 1px solid rgba(180, 190, 254, 0.15);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--mauve);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--subtext);
+  text-align: center;
+}
