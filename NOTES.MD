@@ -10,6 +10,8 @@
 - Add so that letter can only repeat max 2 times
 - Make it multiplayer?
 - Make it so i can submit multiple words
+- Frequency makes some letters apear to much?
+- Change font to a codding font
 
 
 ## Bugs Found
