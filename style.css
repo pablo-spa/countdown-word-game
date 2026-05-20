@@ -32,7 +32,7 @@ body {
   color: var(--text);
   font-family: 'JetBrains Mono', monospace;
   min-height: 100vh;
-  padding: 20px;
+  padding: 60px 20px 20px;
 }
 
 /* ── Hamburger button ──────────────────────────────────────── */
@@ -137,7 +137,7 @@ nav {
   justify-content: center;
   max-width: 860px;
   margin: 0 auto;
-  padding-top: 10px;
+  padding-top: 0;
 }
 
 .main-area {
@@ -164,7 +164,8 @@ nav {
   min-width: 180px;
   padding: 16px;
   position: sticky;
-  top: 20px;
+  top: 60px;
+  overflow: hidden;
 }
 
 /* ── Glass card ────────────────────────────────────────────── */
