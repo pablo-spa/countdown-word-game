@@ -52,3 +52,36 @@ document.getElementById('consonant-btn').addEventListener('click', function() {
   const letter = pickLetter(CONSONANTS);
   addLetter(letter);
 });
+
+// ── Timer ─────────────────────────────────────────────────────
+// We store the interval ID so we can stop it later
+let timerInterval = null;
+
+// This function starts the 30 second countdown
+function startTimer() {
+  // Don't start a second timer if one is already running
+  if (timerInterval !== null) return;
+
+  let timeLeft = 30;
+
+  // setInterval runs a function repeatedly, every 1000ms (1 second)
+  timerInterval = setInterval(function() {
+    timeLeft--;
+
+    // Update the number shown on the page
+    document.getElementById('timer').textContent = timeLeft;
+
+    // When it hits 0, stop the timer
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+
+      // Disable the letter buttons so no more letters can be added
+      document.getElementById('vowel-btn').disabled = true;
+      document.getElementById('consonant-btn').disabled = true;
+    }
+  }, 1000);
+}
+
+// Listen for the Start Timer button
+document.getElementById('start-btn').addEventListener('click', startTimer);
