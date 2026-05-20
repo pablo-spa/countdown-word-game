@@ -136,6 +136,12 @@ function updateScore(word) {
 function startTimer(startFrom = null) {
   if (timerInterval !== null) return;
 
+  // Don't start unless all 9 letters have been picked
+  if (selectedLetters.length < 9) {
+    showFeedback('pick all 9 letters first', false);
+    return;
+  }
+
   const chosen = parseInt(document.getElementById('timer-input').value);
   let timeLeft = startFrom !== null ? startFrom : (isNaN(chosen) || chosen < 10 ? 30 : chosen);
 
