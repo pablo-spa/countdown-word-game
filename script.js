@@ -27,6 +27,13 @@ const CONSONANTS = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 
 // We start with an empty array and add to it as they click.
 let selectedLetters = [];
 
+// ── Check letter repeat limit ─────────────────────────────────
+// Returns true if the letter has already appeared 2 times
+function isAtRepeatLimit(letter) {
+  const count = selectedLetters.filter(l => l === letter).length;
+  return count >= 2;
+}
+
 // ── Weighted letter picker ────────────────────────────────────
 // Instead of picking randomly from a plain array, we use the
 // weights to make common letters appear more often.
@@ -72,41 +79,44 @@ function addLetter(letter) {
 
 // ── Button event listeners (with Countdown rules) ─────────────
 // Real Countdown rules: max 5 vowels, max 6 consonants, 9 total
-
 document.getElementById('vowel-btn').addEventListener('click', function() {
   if (selectedLetters.length >= 9) return;
-  if (vowelCount >= 5) return; // max 5 vowels
+  if (vowelCount >= 5) return;
 
-  const letter = pickLetter(VOWELS);
+  let letter = pickLetter(VOWELS);
+
+  // Keep picking until we find one that isn't at its repeat limit
+  let attempts = 0;
+  while (isAtRepeatLimit(letter) && attempts < 20) {
+    letter = pickLetter(VOWELS);
+    attempts++;
+  }
+
   addLetter(letter);
   vowelCount++;
 
-  // Disable vowel button if limit reached
-  if (vowelCount >= 5) {
-    document.getElementById('vowel-btn').disabled = true;
-  }
-  // Disable consonant button if total reached
-  if (selectedLetters.length >= 9) {
-    document.getElementById('consonant-btn').disabled = true;
-  }
+  if (vowelCount >= 5) document.getElementById('vowel-btn').disabled = true;
+  if (selectedLetters.length >= 9) document.getElementById('consonant-btn').disabled = true;
 });
 
 document.getElementById('consonant-btn').addEventListener('click', function() {
   if (selectedLetters.length >= 9) return;
-  if (consonantCount >= 6) return; // max 6 consonants
+  if (vowelCount >= 5) return;
 
-  const letter = pickLetter(CONSONANTS);
+  let letter = pickLetter(VOWELS);
+
+  // Keep picking until we find one that isn't at its repeat limit
+  let attempts = 0;
+  while (isAtRepeatLimit(letter) && attempts < 20) {
+    letter = pickLetter(VOWELS);
+    attempts++;
+  }
+
   addLetter(letter);
-  consonantCount++;
+  vowelCount++;
 
-  // Disable consonant button if limit reached
-  if (consonantCount >= 6) {
-    document.getElementById('consonant-btn').disabled = true;
-  }
-  // Disable vowel button if total reached
-  if (selectedLetters.length >= 9) {
-    document.getElementById('vowel-btn').disabled = true;
-  }
+  if (vowelCount >= 5) document.getElementById('vowel-btn').disabled = true;
+  if (selectedLetters.length >= 9) document.getElementById('consonant-btn').disabled = true;
 });
 
 // ── Timer ─────────────────────────────────────────────────────
