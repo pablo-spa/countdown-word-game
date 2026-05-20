@@ -231,15 +231,15 @@ document.getElementById('start-btn').addEventListener('click', startTimer);
 // ── Pause / Resume button ──────────────────────────────────────
 document.getElementById('pause-btn').addEventListener('click', function() {
   if (isPaused) {
-    isPaused          = false;
-    this.textContent  = 'Pause';
-    startTimer();
+    isPaused         = false;
+    this.textContent = 'Pause';
+    startTimer(timeRemaining);
     timerMusic.play();
   } else {
-    isPaused          = true;
-    this.textContent  = 'Resume';
+    isPaused         = true;
+    this.textContent = 'Resume';
     clearInterval(timerInterval);
-    timerInterval     = null;
+    timerInterval    = null;
     timerMusic.pause();
   }
 });
