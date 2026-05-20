@@ -2,11 +2,9 @@
 
 ## Ideas & Future Features
 - Add a scoring system (points based on word length)
-- Show the player's score history
 - Add difficulty levels (e.g. time limit changes)
 - Add a way to suggest bugs directly form the webpage
 - Make it multiplayer?
-- Make it so i can submit multiple words
 - Frequency makes some letters apear to much?
 - Input timer by player
 
@@ -35,3 +33,5 @@
 - Change font to a codding font
 - Scoring System
 - No submissions if timer at start or end
+- Make it so i can submit multiple words
+- Show the player's score history

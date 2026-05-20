@@ -91,7 +91,7 @@ function getPoints(word) {
   if (len <= 5) return 2;
   if (len <= 7) return 4;
   if (len === 8) return 7;
-  return 10;
+  return 20; // 9 letters — double points!
 }
 
 
@@ -252,7 +252,7 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     showFeedback('time is up!', false);
     return;
   }
-  
+
   const word = document.getElementById('player-word').value.trim().toLowerCase();
   if (word === '') return;
 
