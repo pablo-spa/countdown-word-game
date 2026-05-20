@@ -441,6 +441,15 @@ document.getElementById('timer-input').addEventListener('input', function() {
   }
 });
 
+// ── Hamburger menu ─────────────────────────────────────────────
+document.getElementById('hamburger-btn').addEventListener('click', function() {
+  document.getElementById('nav-overlay').classList.remove('hidden');
+});
+
+document.getElementById('nav-close-btn').addEventListener('click', function() {
+  document.getElementById('nav-overlay').classList.add('hidden');
+});
+
 
 // =============================================================
 // INITIALISE
@@ -448,3 +457,4 @@ document.getElementById('timer-input').addEventListener('input', function() {
 
 // Load leaderboard on page start
 updateScoreHistory();
+

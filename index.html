@@ -9,16 +9,17 @@
   </head>
   <body>
 
-    <div class="page-layout">
+    <!-- ── Hamburger menu ── -->
+    <button class="hamburger" id="hamburger-btn">&#9776;</button>
+    <div class="nav-overlay hidden" id="nav-overlay">
+      <button class="nav-close" id="nav-close-btn">&#10005;</button>
+      <nav>
+        <a href="index.html" class="nav-link active">Game</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
 
-      <!-- ── Left nav sidebar ── -->
-      <div class="glass side-panel">
-        <div class="nav-title">Menu</div>
-        <nav>
-          <a href="index.html" class="nav-link active">Game</a>
-          <a href="about.html" class="nav-link">About</a>
-        </nav>
-      </div>
+    <div class="page-layout">
 
       <!-- ── Main game area ── -->
       <div class="main-area">

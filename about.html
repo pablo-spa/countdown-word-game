@@ -3,69 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <nav>
-        <a href="index.html" class="nav-link">Game</a>
-        <a href="about.html" class="nav-link active">About</a>
-      </nav>
-    <title>Countdown — About</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Countdown — About</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <h1>Behind the Game</h1>
 
-    <!-- Project overview -->
-    <div class="glass">
-      <h2>What is this?</h2>
-      <p>A browser-based Countdown word game built as a coding practice project. The game uses a weighted letter picker backed by real English word frequency data, analysed with Python.</p>
+    <!-- ── Hamburger menu ── -->
+    <button class="hamburger" id="hamburger-btn">&#9776;</button>
+    <div class="nav-overlay hidden" id="nav-overlay">
+      <button class="nav-close" id="nav-close-btn">&#10005;</button>
+      <nav>
+        <a href="index.html" class="nav-link">Game</a>
+        <a href="about.html" class="nav-link active">About</a>
+      </nav>
     </div>
 
-    <!-- Word list stats -->
-    <div class="glass">
-      <h2>The Word List</h2>
-      <p>The game validates words against the ENABLE dictionary — a public domain list of standard English words. The full list was filtered three times using Python to keep only words that can actually be formed under the game rules.</p>
-      <div class="stats-row">
-        <div class="stat-card">
-          <span class="stat-number">172,823</span>
-          <span class="stat-label">Original words</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">105,241</span>
-          <span class="stat-label">After length filter (2–9 letters)</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">96,963</span>
-          <span class="stat-label">After repeat filter (max 2 of each letter)</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">94,554</span>
-          <span class="stat-label">After game limits filter (max 5 vowels, max 6 consonants)</span>
-        </div>
+    <div class="about-layout">
+
+      <h1>Behind the Game</h1>
+
+      <div class="glass">
+        <h2>What is this?</h2>
+        <p>A browser-based Countdown word game built as a coding practice project. The game uses a weighted letter picker backed by real English word frequency data, analysed with Python.</p>
       </div>
-      <p style="margin-top: 16px;">Each filter mirrors a game rule — so every word in the final list can actually appear as a valid answer during play. The three filters together removed 78,269 words from the original dictionary.</p>
-    </div>
 
-  <!-- Weights comparison chart -->
-<div class="glass">
-  <h2>Letter Weights — Raw vs Coverage</h2>
-  <p>The first approach counted how many times each letter appeared across all words (raw frequency). The second counts how many different words each letter appears in (word coverage). Coverage produces a more useful distribution for gameplay.</p>
-  <canvas id="letterChart"></canvas>
-</div>
+      <div class="glass">
+        <h2>The Word List</h2>
+        <p>The game validates words against the ENABLE dictionary — a public domain list of standard English words. The full list was filtered three times using Python to keep only words that can actually be formed under the game rules.</p>
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-number">172,823</span>
+            <span class="stat-label">Original words</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">105,241</span>
+            <span class="stat-label">After length filter (2–9 letters)</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">96,963</span>
+            <span class="stat-label">After repeat filter (max 2 of each letter)</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">94,554</span>
+            <span class="stat-label">After game limits filter (max 5 vowels, max 6 consonants)</span>
+          </div>
+        </div>
+        <p style="margin-top: 20px;">Each filter mirrors a game rule — so every word in the final list can actually appear as a valid answer during play. The three filters together removed 78,269 words from the original dictionary.</p>
+      </div>
 
-<!-- Word length distribution chart -->
-<div class="glass">
-  <h2>Word Length Distribution</h2>
-  <p>How many words exist at each length in the filtered dictionary. The peak at 8 letters means there are plenty of long word possibilities — but 9-letter words are rarer, making them worth double points.</p>
-  <canvas id="lengthChart"></canvas>
-</div>
+      <div class="glass">
+        <h2>Letter Weights — Raw vs Coverage</h2>
+        <p>The first approach counted how many times each letter appeared across all words (raw frequency). The second counts how many different words each letter appears in (word coverage). Coverage produces a more useful distribution for gameplay.</p>
+        <canvas id="letterChart"></canvas>
+      </div>
 
-    <!-- How the weighting works -->
-    <div class="glass">
-      <h2>How Weighted Picking Works</h2>
-      <p>Instead of picking randomly from a flat list, the game assigns each letter a weight proportional to its frequency. A random point is chosen along the total weight, and we walk through the letters until we hit it — meaning E (11.8%) is picked far more often than Q (0.18%).</p>
+      <div class="glass">
+        <h2>Word Length Distribution</h2>
+        <p>How many words exist at each length in the filtered dictionary. The peak at 8 letters means there are plenty of long word possibilities — but 9-letter words are rarer, making them worth double points.</p>
+        <canvas id="lengthChart"></canvas>
+      </div>
+
+      <div class="glass">
+        <h2>How Weighted Picking Works</h2>
+        <p>Instead of picking randomly from a flat list, the game assigns each letter a weight proportional to its frequency. A random point is chosen along the total weight, and we walk through the letters until we hit it — meaning E (11.8%) is picked far more often than Q (0.18%).</p>
+      </div>
+
     </div>
 
     <script src="about.js"></script>
+    <script>
+      document.getElementById('hamburger-btn').addEventListener('click', function() {
+        document.getElementById('nav-overlay').classList.remove('hidden');
+      });
+      document.getElementById('nav-close-btn').addEventListener('click', function() {
+        document.getElementById('nav-overlay').classList.add('hidden');
+      });
+    </script>
   </body>
 </html>
