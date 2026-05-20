@@ -19,6 +19,7 @@ let timerInterval   = null;
 let isPaused        = false;
 let isMuted         = false;
 let submittedWords = [];
+let timeRemaining = null;
 
 // ── Audio ──────────────────────────────────────────────────────
 const timerMusic = new Audio('timer-music.mp3');
@@ -132,20 +133,18 @@ function updateScore(word) {
 }
 
 // Starts the countdown
-function startTimer() {
+function startTimer(startFrom = null) {
   if (timerInterval !== null) return;
 
-  // Read the player's chosen time, fallback to 30 if invalid
   const chosen = parseInt(document.getElementById('timer-input').value);
-  let timeLeft = isNaN(chosen) || chosen < 10 ? 30 : chosen;
+  let timeLeft = startFrom !== null ? startFrom : (isNaN(chosen) || chosen < 10 ? 30 : chosen);
 
-  // Update the display to match
   document.getElementById('timer').textContent = timeLeft;
-
   timerMusic.play();
 
   timerInterval = setInterval(function() {
     timeLeft--;
+    timeRemaining = timeLeft;
     document.getElementById('timer').textContent = timeLeft;
 
     if (timeLeft <= 0) {
