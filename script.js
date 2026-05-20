@@ -131,7 +131,8 @@ function showFeedback(message, isValid) {
 function updateScore(word) {
   const points = getPoints(word);
   score += points;
-  document.getElementById('score-display').textContent = `Score: ${score} (+${points})`;
+  document.getElementById('score-display').textContent = score;
+  showFeedback('+' + points + ' pts — ' + word.toUpperCase(), true);
 }
 
 // Starts the countdown

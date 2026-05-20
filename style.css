@@ -306,3 +306,36 @@ nav a:hover {
   color: var(--lavender);
   border-color: rgba(180, 190, 254, 0.3);
 }
+
+/* ── Bottom row layout ─────────────────────────────────────── */
+.bottom-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  align-items: flex-start;
+}
+
+.bottom-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bottom-col.center {
+  align-items: center;
+}
+
+.col-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--overlay);
+}
+
+#score-display {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--green);
+  letter-spacing: 2px;
+}

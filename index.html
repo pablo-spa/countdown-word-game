@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <nav>
-      <a href="index.html">Game</a>
-      <a href="about.html">About</a>
-    </nav>
     <title>Countdown Word Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
+    <nav>
+      <a href="index.html">Game</a>
+      <a href="about.html">About</a>
+    </nav>
+
     <h1>Countdown</h1>
 
     <div class="glass">
@@ -25,11 +27,11 @@
 
       <!-- Letter tiles -->
       <div id="letter-board"></div>
-      
+
       <!-- Custom timer input -->
       <div class="controls">
         <label for="timer-input">Time (seconds):</label>
-        <input type="number" id="timer-input" value="30" min="10" max="120" />
+        <input type="number" id="timer-input" value="30" min="10" max="300" placeholder="30" />
       </div>
 
       <!-- Timer -->
@@ -49,18 +51,25 @@
         <button id="submit-btn">Submit</button>
       </div>
 
-      <!-- Feedback message (disappears after 2s) -->
+      <!-- Feedback message -->
       <div id="feedback"></div>
 
-      <!-- Submitted words list (stays permanently) -->
-      <div id="submitted-words"></div>
-
-      <!-- Score -->
-      <div id="score-display">Score: 0</div>
-
-      <!-- Best words -->
-      <button id="best-words-btn">Best Words</button>
-      <div id="best-words-list"></div>
+      <!-- Bottom row: submitted words + score + best words side by side -->
+      <div class="bottom-row">
+        <div class="bottom-col">
+          <div class="col-label">submitted</div>
+          <div id="submitted-words"></div>
+        </div>
+        <div class="bottom-col">
+          <div class="col-label">best words</div>
+          <div id="best-words-list"></div>
+          <button id="best-words-btn">Show</button>
+        </div>
+        <div class="bottom-col center">
+          <div class="col-label">score</div>
+          <div id="score-display">0</div>
+        </div>
+      </div>
 
     </div>
 
