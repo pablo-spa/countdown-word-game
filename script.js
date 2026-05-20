@@ -301,6 +301,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
 
   document.getElementById('letter-board').innerHTML        = '';
   const chosen = parseInt(document.getElementById('timer-input').value);
+  timeRemaining = null;
   document.getElementById('timer').textContent = isNaN(chosen) || chosen < 10 ? 30 : chosen;
   document.getElementById('pause-btn').textContent         = 'Pause';
   document.getElementById('player-word').value             = '';
