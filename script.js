@@ -1,0 +1,54 @@
+// ── Letter pools ──────────────────────────────────────────────
+// These are the two sets of letters the player can pick from.
+const VOWELS = ['A', 'E', 'I', 'O', 'U'];
+const CONSONANTS = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'];
+
+// ── Game state ────────────────────────────────────────────────
+// This array will store the letters the player has chosen so far.
+// We start with an empty array and add to it as they click.
+let selectedLetters = [];
+
+// ── Pick a random letter ──────────────────────────────────────
+// Math.random() gives a decimal between 0 and 1 (e.g. 0.73)
+// Multiplying by array.length scales it to the array size (e.g. 3.65)
+// Math.floor() rounds down to a whole number (e.g. 3)
+// That number is used as the index to grab an item from the array
+function pickLetter(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+// ── Add a letter to the board ─────────────────────────────────
+// This function adds a letter tile to the page and records it.
+function addLetter(letter) {
+  // Stop if the player already has 9 letters
+  if (selectedLetters.length >= 9) return;
+
+  // Save the letter in our array
+  selectedLetters.push(letter);
+
+  // Find the board element in the HTML
+  const board = document.getElementById('letter-board');
+
+  // Create a new <div> element to act as the tile
+  const tile = document.createElement('div');
+  tile.classList.add('tile');   // add a CSS class so we can style it
+  tile.textContent = letter;    // set the text inside the tile
+
+  // Add the tile to the board on the page
+  board.appendChild(tile);
+}
+
+// ── Button event listeners ────────────────────────────────────
+// These listen for clicks on the Vowel and Consonant buttons.
+// When clicked, they pick a random letter from the right pool
+// and call addLetter() to show it on the board.
+
+document.getElementById('vowel-btn').addEventListener('click', function() {
+  const letter = pickLetter(VOWELS);
+  addLetter(letter);
+});
+
+document.getElementById('consonant-btn').addEventListener('click', function() {
+  const letter = pickLetter(CONSONANTS);
+  addLetter(letter);
+});
