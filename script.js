@@ -18,7 +18,7 @@ let score           = 0;
 let timerInterval   = null;
 let isPaused        = false;
 let isMuted         = false;
-
+let submittedWords = [];
 
 // ── Audio ──────────────────────────────────────────────────────
 const timerMusic = new Audio('timer-music.mp3');
@@ -170,6 +170,13 @@ function findBestWords() {
     .slice(0, 5);
 }
 
+// Updates the submitted words display
+function updateSubmittedWords() {
+  const display = document.getElementById('submitted-words');
+  display.innerHTML = submittedWords
+    .map(w => `<span class="submitted-word">${w.toUpperCase()} (+${getPoints(w)})</span>`)
+    .join('');
+}
 
 // =============================================================
 // EVENT LISTENERS
@@ -244,13 +251,21 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   const word = document.getElementById('player-word').value.trim().toLowerCase();
   if (word === '') return;
 
-  const inDictionary    = dictionary.has(word);
+  // Don't allow the same word twice
+  if (submittedWords.includes(word)) {
+    showFeedback('already submitted that word', false);
+    return;
+  }
+
+  const inDictionary     = dictionary.has(word);
   const usesValidLetters = canFormWord(word, selectedLetters);
 
   if (inDictionary && usesValidLetters) {
     updateScore(word);
+    submittedWords.push(word);
     showFeedback(word.toUpperCase() + ' — ' + word.length + ' letters, +' + getPoints(word) + ' pts', true);
     document.getElementById('player-word').value = '';
+    updateSubmittedWords();
   } else if (!usesValidLetters) {
     showFeedback('letters not on the board', false);
   } else {
@@ -271,6 +286,8 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   vowelCount      = 0;
   consonantCount  = 0;
   score           = 0;
+  submittedWords = [];
+  updateSubmittedWords();
 
   document.getElementById('letter-board').innerHTML        = '';
   document.getElementById('timer').textContent             = '30';

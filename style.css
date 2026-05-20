@@ -244,3 +244,22 @@ p {
 #feedback.invalid {
   color: var(--red, #f38ba8);
 }
+
+/* ── Submitted words ───────────────────────────────────────── */
+#submitted-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+  justify-content: center;
+}
+
+.submitted-word {
+  background: rgba(166, 227, 161, 0.1);
+  border: 1px solid rgba(166, 227, 161, 0.3);
+  color: var(--green);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
