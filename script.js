@@ -276,6 +276,8 @@ document.getElementById('mute-btn').addEventListener('click', function() {
 document.getElementById('reset-btn').addEventListener('click', function() {
   // Clear the letters array
   selectedLetters = [];
+  vowelCount = 0;
+  consonantCount = 0;
 
   // Clear the tiles from the board
   document.getElementById('letter-board').innerHTML = '';
