@@ -242,3 +242,36 @@ document.getElementById('mute-btn').addEventListener('click', function() {
   timerMusic.muted = isMuted;
   this.textContent = isMuted ? 'Unmute' : 'Mute';
 });
+
+// ── Reset Game ────────────────────────────────────────────────
+// Clears the board and resets everything back to the start state
+document.getElementById('reset-btn').addEventListener('click', function() {
+  // Clear the letters array
+  selectedLetters = [];
+
+  // Clear the tiles from the board
+  document.getElementById('letter-board').innerHTML = '';
+
+  // Reset the timer display
+  document.getElementById('timer').textContent = '30';
+
+  // Stop and reset the timer interval
+  clearInterval(timerInterval);
+  timerInterval = null;
+  isPaused = false;
+
+  // Reset pause button text
+  document.getElementById('pause-btn').textContent = 'Pause';
+
+  // Stop the music
+  timerMusic.pause();
+  timerMusic.currentTime = 0;
+
+  // Re-enable the vowel and consonant buttons
+  document.getElementById('vowel-btn').disabled = false;
+  document.getElementById('consonant-btn').disabled = false;
+
+  // Clear the word input and best words
+  document.getElementById('player-word').value = '';
+  document.getElementById('best-words-list').textContent = '';
+});

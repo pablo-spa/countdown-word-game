@@ -8,6 +8,8 @@
 - Separate vowel/consonant limits (real Countdown rules: max 5 vowels, min 3 consonants)
 - Add a way to suggest bugs directly form the webpage
 - Add so that letter can only repeat max 2 times
+- Make it multiplayer?
+- Make it so i can submit multiple words
 
 
 ## Bugs Found
