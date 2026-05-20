@@ -239,7 +239,9 @@ document.getElementById('consonant-btn').addEventListener('click', function() {
 });
 
 // ── Start button ───────────────────────────────────────────────
-document.getElementById('start-btn').addEventListener('click', startTimer);
+document.getElementById('start-btn').addEventListener('click', function() {
+  startTimer();
+});
 
 // ── Pause / Resume button ──────────────────────────────────────
 document.getElementById('pause-btn').addEventListener('click', function() {
