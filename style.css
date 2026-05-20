@@ -132,9 +132,11 @@ nav {
 /* ── Game page layout ──────────────────────────────────────── */
 .page-layout {
   display: flex;
+  flex-direction: row;
   gap: 16px;
   align-items: flex-start;
   justify-content: center;
+  width: 100%;
   max-width: 860px;
   margin: 0 auto;
   padding-top: 0;
@@ -162,10 +164,8 @@ nav {
 .side-panel {
   width: 180px;
   min-width: 180px;
+  flex-shrink: 0;
   padding: 16px;
-  position: sticky;
-  top: 60px;
-  overflow: hidden;
 }
 
 /* ── Glass card ────────────────────────────────────────────── */
