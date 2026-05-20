@@ -200,12 +200,14 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   const usesValidLetters = isValidLetterUse(word, selectedLetters);
 
   if (inDictionary && usesValidLetters) {
-    alert('✅ Valid word! ' + word.length + ' letters');
-  } else if (!usesValidLetters) {
-    alert('❌ You used letters that aren\'t on the board!');
-  } else {
-    alert('❌ Not a valid English word');
-  }
+  updateScore(word);
+  showFeedback(word.toUpperCase() + ' — ' + word.length + ' letters, +' + getPoints(word) + ' pts', true);
+  document.getElementById('player-word').value = '';
+} else if (!usesValidLetters) {
+  showFeedback('letters not on the board', false);
+} else {
+  showFeedback('not a valid word', false);
+}
 });
 // ── Best Words Solver ─────────────────────────────────────────
 // Check if a word can be formed from the available letters
@@ -315,3 +317,23 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   document.getElementById('player-word').value = '';
   document.getElementById('best-words-list').textContent = '';
 });
+
+// ── Scoring ───────────────────────────────────────────────────
+// Points are awarded based on word length
+// 2-3 letters = 1pt, 4-5 = 2pts, 6-7 = 4pts, 8 = 7pts, 9 = 10pts
+let score = 0;
+
+function getPoints(word) {
+  const len = word.length;
+  if (len <= 3) return 1;
+  if (len <= 5) return 2;
+  if (len <= 7) return 4;
+  if (len === 8) return 7;
+  return 10; // 9 letters
+}
+
+function updateScore(word) {
+  const points = getPoints(word);
+  score += points;
+  document.getElementById('score-display').textContent = `Score: ${score} (+${points})`;
+}

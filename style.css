@@ -226,3 +226,21 @@ p {
   color: var(--subtext);
   text-align: center;
 }
+
+/* ── Feedback message ──────────────────────────────────────── */
+#feedback {
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  min-height: 30px;
+  margin: 10px 0;
+  transition: opacity 0.3s;
+}
+
+#feedback.valid {
+  color: var(--green);
+}
+
+#feedback.invalid {
+  color: var(--red, #f38ba8);
+}

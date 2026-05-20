@@ -5,11 +5,10 @@
 - Show the player's score history
 - Add difficulty levels (e.g. time limit changes)
 - Add a way to suggest bugs directly form the webpage
-- Add so that letter can only repeat max 2 times
 - Make it multiplayer?
 - Make it so i can submit multiple words
 - Frequency makes some letters apear to much?
-- Change font to a codding font
+
 
 
 ## Bugs Found
@@ -31,3 +30,5 @@
 - Catppuccin Mocha + liquid glass styling
 - About/analytics page with Chart.js letter frequency chart
 - Python word list filtering (172k → 105k words)
+- Add so that letter can only repeat max 2 times
+- Change font to a codding font
