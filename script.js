@@ -324,3 +324,12 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   timerMusic.pause();
   timerMusic.currentTime = 0;
 });
+
+// ── Timer input ────────────────────────────────────────────────
+// Update timer display live as the player types a new time
+document.getElementById('timer-input').addEventListener('input', function() {
+  const chosen = parseInt(this.value);
+  if (!isNaN(chosen) && chosen >= 10) {
+    document.getElementById('timer').textContent = chosen;
+  }
+});
