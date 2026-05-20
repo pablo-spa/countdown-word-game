@@ -30,7 +30,7 @@ const timerMusic = new Audio('timer-music.mp3');
 // ── Letter Weights (from Python analysis) ─────────────────────
 let letterWeights = {};
 
-fetch('data/letter_weights.json')
+fetch('data/letter_weights_coverage.json')
   .then(response => response.json())
   .then(data => {
     letterWeights = data;
@@ -61,15 +61,20 @@ function isAtRepeatLimit(letter) {
 }
 
 // Picks a random letter from a pool using frequency weights
-function pickLetter(pool) {
+ffunction pickLetter(pool) {
   let totalWeight = pool.reduce((sum, letter) => {
-    return sum + (letterWeights[letter] || 1);
+    const timesAlreadyPicked = selectedLetters.filter(l => l === letter).length;
+    // Reduce weight by 80% if already picked once
+    const penalty = timesAlreadyPicked > 0 ? 0.2 : 1;
+    return sum + (letterWeights[letter] || 1) * penalty;
   }, 0);
 
   let random = Math.random() * totalWeight;
 
   for (let letter of pool) {
-    random -= (letterWeights[letter] || 1);
+    const timesAlreadyPicked = selectedLetters.filter(l => l === letter).length;
+    const penalty = timesAlreadyPicked > 0 ? 0.2 : 1;
+    random -= (letterWeights[letter] || 1) * penalty;
     if (random <= 0) return letter;
   }
 
