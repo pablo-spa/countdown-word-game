@@ -18,9 +18,10 @@ let score           = 0;
 let timerInterval   = null;
 let isPaused        = false;
 let isMuted         = false;
-let submittedWords = [];
-let timeRemaining = null;
-let gameActive = false;
+let submittedWords  = [];
+let timeRemaining   = null;
+let gameActive      = false;
+
 
 // ── Audio ──────────────────────────────────────────────────────
 const timerMusic = new Audio('timer-music.mp3');
@@ -116,7 +117,7 @@ function addLetter(letter) {
 
 // Shows a styled feedback message that fades after 2 seconds
 function showFeedback(message, isValid) {
-  const feedback    = document.getElementById('feedback');
+  const feedback       = document.getElementById('feedback');
   feedback.textContent = message;
   feedback.className   = isValid ? 'valid' : 'invalid';
 
@@ -159,11 +160,12 @@ function startTimer(startFrom = null) {
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       timerInterval = null;
+      gameActive    = false;
       timerMusic.pause();
       timerMusic.currentTime = 0;
       document.getElementById('vowel-btn').disabled     = true;
       document.getElementById('consonant-btn').disabled = true;
-      document.getElementById('timer').textContent = 'done';
+      document.getElementById('timer').textContent      = 'done';
     }
   }, 1000);
 }
@@ -193,6 +195,7 @@ function updateSubmittedWords() {
     .join('');
 }
 
+
 // =============================================================
 // EVENT LISTENERS
 // =============================================================
@@ -212,7 +215,7 @@ document.getElementById('vowel-btn').addEventListener('click', function() {
   addLetter(letter);
   vowelCount++;
 
-  if (vowelCount >= 5)           document.getElementById('vowel-btn').disabled     = true;
+  if (vowelCount >= 5)             document.getElementById('vowel-btn').disabled     = true;
   if (selectedLetters.length >= 9) document.getElementById('consonant-btn').disabled = true;
 });
 
@@ -259,18 +262,17 @@ document.getElementById('pause-btn').addEventListener('click', function() {
 
 // ── Mute button ────────────────────────────────────────────────
 document.getElementById('mute-btn').addEventListener('click', function() {
-  isMuted             = !isMuted;
-  timerMusic.muted    = isMuted;
-  this.textContent    = isMuted ? 'Unmute' : 'Mute';
+  isMuted          = !isMuted;
+  timerMusic.muted = isMuted;
+  this.textContent = isMuted ? 'Unmute' : 'Mute';
 });
 
 // ── Submit button ──────────────────────────────────────────────
 document.getElementById('submit-btn').addEventListener('click', function() {
-   if (!gameActive) {
+  if (!gameActive) {
     showFeedback('start the game first!', false);
     return;
   }
-  
 
   const word = document.getElementById('player-word').value.trim().toLowerCase();
   if (word === '') return;
@@ -310,13 +312,16 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   vowelCount      = 0;
   consonantCount  = 0;
   score           = 0;
-  submittedWords = [];
+  submittedWords  = [];
+  gameActive      = false;
+  isPaused        = false;
+  timeRemaining   = null;
+
   updateSubmittedWords();
 
-  document.getElementById('letter-board').innerHTML        = '';
   const chosen = parseInt(document.getElementById('timer-input').value);
-  timeRemaining = null;
-  document.getElementById('timer').textContent = isNaN(chosen) || chosen < 10 ? 30 : chosen;
+  document.getElementById('letter-board').innerHTML        = '';
+  document.getElementById('timer').textContent             = isNaN(chosen) || chosen < 10 ? 30 : chosen;
   document.getElementById('pause-btn').textContent         = 'Pause';
   document.getElementById('player-word').value             = '';
   document.getElementById('best-words-list').textContent   = '';
@@ -327,7 +332,6 @@ document.getElementById('reset-btn').addEventListener('click', function() {
 
   clearInterval(timerInterval);
   timerInterval = null;
-  isPaused      = false;
 
   timerMusic.pause();
   timerMusic.currentTime = 0;
