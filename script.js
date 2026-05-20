@@ -1,3 +1,6 @@
+// ── Audio ─────────────────────────────────────────────────────
+// This creates an audio object pointing to our music file
+const timerMusic = new Audio('timer-music.mp3');
 // ── Letter pools ──────────────────────────────────────────────
 // These are the two sets of letters the player can pick from.
 const VOWELS = ['A', 'E', 'I', 'O', 'U'];
@@ -61,7 +64,8 @@ let timerInterval = null;
 function startTimer() {
   // Don't start a second timer if one is already running
   if (timerInterval !== null) return;
-
+  // Play the music when the timer starts
+  timerMusic.play();
   let timeLeft = 30;
 
   // setInterval runs a function repeatedly, every 1000ms (1 second)
@@ -75,6 +79,9 @@ function startTimer() {
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       timerInterval = null;
+      // Stop the music when the timer ends
+      timerMusic.pause();
+      timerMusic.currentTime = 0; // rewind to the start for next round 
 
       // Disable the letter buttons so no more letters can be added
       document.getElementById('vowel-btn').disabled = true;
