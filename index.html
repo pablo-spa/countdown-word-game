@@ -6,35 +6,34 @@
     <title>Countdown Word Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-
+    <body>
     <h1>Countdown</h1>
 
-    <!-- Letter selection buttons -->
-    <div class="controls">
-      <button id="vowel-btn">Vowel</button>
-      <button id="consonant-btn">Consonant</button>
+    <div class="glass">
+      <div class="controls">
+        <button id="vowel-btn">Vowel</button>
+        <button id="consonant-btn">Consonant</button>
+      </div>
+
+      <div id="letter-board"></div>
+
+      <div id="timer">30</div>
+
+      <div class="controls">
+        <button id="start-btn">Start</button>
+        <button id="pause-btn">Pause</button>
+        <button id="mute-btn">Mute</button>
+      </div>
+
+      <div class="controls">
+        <input type="text" id="player-word" placeholder="Type your word..." />
+        <button id="submit-btn">Submit</button>
+      </div>
+
+      <button id="best-words-btn">Best Words</button>
+      <div id="best-words-list"></div>
     </div>
-
-    <!-- The 9 letter tiles -->
-    <div id="letter-board">
-      <!-- tiles will appear here via JS -->
-    </div>
-
-    <!-- Timer -->
-    <div id="timer">30</div>
-    <button id="start-btn">Start Timer</button>
-    <button id="pause-btn">Pause</button>
-    <button id="mute-btn">Mute</button>
-
-    <!-- Player input -->
-    <input type="text" id="player-word" placeholder="Type your word..." />
-    <button id="submit-btn">Submit</button>
-
-    <!-- Best words reveal -->
-    <button id="best-words-btn">Best Words</button>
-    <div id="best-words-list"></div>
 
     <script src="script.js"></script>
-  </body>
+    </body>
 </html>

@@ -1,19 +1,89 @@
-#letter-board {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-  flex-wrap: wrap;
+/* ── Catppuccin Mocha palette ──────────────────────────────── */
+:root {
+  --base:     #1e1e2e;
+  --mantle:   #181825;
+  --crust:    #11111b;
+  --surface0: #313244;
+  --surface1: #45475a;
+  --overlay:  #6c7086;
+  --text:     #cdd6f4;
+  --subtext:  #a6adc8;
+  --lavender: #b4befe;
+  --blue:     #89b4fa;
+  --mauve:    #cba6f7;
+  --peach:    #fab387;
+  --yellow:   #f9e2af;
+  --green:    #a6e3a1;
+  --teal:     #94e2d5;
 }
 
-.tile {
-  width: 60px;
-  height: 60px;
-  background-color: #f0c040;
+/* ── Base ──────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--base);
+  /* Subtle radial glow in the background for depth */
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(203,166,247,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(137,180,250,0.08) 0%, transparent 60%);
+  color: var(--text);
+  font-family: 'Georgia', serif;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: 2rem;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* ── Liquid glass card ─────────────────────────────────────── */
+/* This is the core glass effect — semi-transparent background,
+   blur of whatever is behind it, and a soft glowing border */
+.glass {
+  background: rgba(49, 50, 68, 0.4);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(180, 190, 254, 0.15);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  padding: 30px;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* ── Title ─────────────────────────────────────────────────── */
+h1 {
+  font-size: 3.5rem;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  /* Gradient text using mauve → blue */
+  background: linear-gradient(135deg, var(--mauve), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 30px;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+button {
+  background: rgba(180, 190, 254, 0.12);
+  color: var(--lavender);
+  border: 1px solid rgba(180, 190, 254, 0.25);
+  padding: 10px 22px;
+  font-size: 1rem;
   font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 3px 3px 0px #b8860b;
-}  
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 5px;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: rgba(180, 190, 254, 0
