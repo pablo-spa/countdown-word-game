@@ -144,3 +144,47 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     alert('❌ Not a valid English word');
   }
 });
+// ── Best Words Solver ─────────────────────────────────────────
+// Check if a word can be formed from the available letters
+function canFormWord(word, letters) {
+  let available = [...letters];
+  for (let char of word.toUpperCase()) {
+    let index = available.indexOf(char);
+    if (index === -1) return false;
+    available.splice(index, 1);
+  }
+  return true;
+}
+
+// Find the best possible words from the selected letters
+function findBestWords() {
+  let validWords = [];
+
+  // Go through every word in the dictionary
+  dictionary.forEach(word => {
+    // Only consider words up to 9 letters
+    if (word.length >= 2 && word.length <= 9) {
+      if (canFormWord(word, selectedLetters)) {
+        validWords.push(word);
+      }
+    }
+  });
+
+  // Sort by length, longest first
+  validWords.sort((a, b) => b.length - a.length);
+
+  // Return the top 5
+  return validWords.slice(0, 5);
+}
+
+// ── Best Words button ─────────────────────────────────────────
+document.getElementById('best-words-btn').addEventListener('click', function() {
+  const best = findBestWords();
+  const display = document.getElementById('best-words-list');
+
+  if (best.length === 0) {
+    display.textContent = 'No words found!';
+  } else {
+    display.textContent = best.join(', ');
+  }
+});
