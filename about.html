@@ -46,12 +46,19 @@
       <p style="margin-top: 16px;">Each filter mirrors a game rule — so every word in the final list can actually appear as a valid answer during play. The three filters together removed 78,269 words from the original dictionary.</p>
     </div>
 
-    <!-- Letter frequency chart -->
-    <div class="glass">
-      <h2>Letter Frequency Analysis</h2>
-      <p>Each letter's probability was calculated by counting its occurrences across all 94,554 words. The picker uses these weights so common letters appear more often.</p>
-      <canvas id="letterChart"></canvas>
-    </div>
+  <!-- Weights comparison chart -->
+<div class="glass">
+  <h2>Letter Weights — Raw vs Coverage</h2>
+  <p>The first approach counted how many times each letter appeared across all words (raw frequency). The second counts how many different words each letter appears in (word coverage). Coverage produces a more useful distribution for gameplay.</p>
+  <canvas id="letterChart"></canvas>
+</div>
+
+<!-- Word length distribution chart -->
+<div class="glass">
+  <h2>Word Length Distribution</h2>
+  <p>How many words exist at each length in the filtered dictionary. The peak at 8 letters means there are plenty of long word possibilities — but 9-letter words are rarer, making them worth double points.</p>
+  <canvas id="lengthChart"></canvas>
+</div>
 
     <!-- How the weighting works -->
     <div class="glass">
