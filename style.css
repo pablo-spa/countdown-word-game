@@ -339,3 +339,75 @@ nav a:hover {
   color: var(--green);
   letter-spacing: 2px;
 }
+
+/* ── Main layout ───────────────────────────────────────────── */
+.main-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ── Side panel ────────────────────────────────────────────── */
+.side-panel {
+  width: 220px;
+  min-width: 220px;
+  padding: 20px;
+}
+
+.side-panel h2 {
+  margin-bottom: 16px;
+}
+
+/* ── Leaderboard entries ───────────────────────────────────── */
+.history-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(180, 190, 254, 0.1);
+}
+
+.history-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-rank {
+  color: var(--overlay);
+  font-size: 0.75rem;
+}
+
+.history-name {
+  color: var(--lavender);
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.history-score {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.history-words {
+  color: var(--subtext);
+  font-size: 0.75rem;
+}
+
+.history-date {
+  color: var(--overlay);
+  font-size: 0.7rem;
+}
+
+/* ── Save score form ───────────────────────────────────────── */
+#save-score-form {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(180, 190, 254, 0.1);
+}
+
+.hidden {
+  display: none;
+}

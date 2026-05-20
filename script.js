@@ -21,6 +21,7 @@ let isMuted         = false;
 let submittedWords  = [];
 let timeRemaining   = null;
 let gameActive      = false;
+let scoreHistory    = JSON.parse(localStorage.getItem('scoreHistory')) || [];
 
 
 // ── Audio ──────────────────────────────────────────────────────
@@ -61,10 +62,10 @@ function isAtRepeatLimit(letter) {
 }
 
 // Picks a random letter from a pool using frequency weights
-ffunction pickLetter(pool) {
+// Letters already picked once get an 80% penalty to reduce repeats
+function pickLetter(pool) {
   let totalWeight = pool.reduce((sum, letter) => {
     const timesAlreadyPicked = selectedLetters.filter(l => l === letter).length;
-    // Reduce weight by 80% if already picked once
     const penalty = timesAlreadyPicked > 0 ? 0.2 : 1;
     return sum + (letterWeights[letter] || 1) * penalty;
   }, 0);
@@ -167,6 +168,7 @@ function startTimer(startFrom = null) {
       clearInterval(timerInterval);
       timerInterval = null;
       gameActive    = false;
+      showSaveScoreForm();
       timerMusic.pause();
       timerMusic.currentTime = 0;
       document.getElementById('vowel-btn').disabled     = true;
@@ -201,38 +203,55 @@ function updateSubmittedWords() {
     .join('');
 }
 
+// Shows the save score form after a round ends
+function showSaveScoreForm() {
+  if (score === 0) return;
+  document.getElementById('save-score-form').classList.remove('hidden');
+  document.getElementById('player-name').focus();
+}
+
+// Saves score with player name to localStorage
+function saveScoreHistory(name) {
+  const entry = {
+    name: name || 'anonymous',
+    score: score,
+    words: [...submittedWords],
+    date: new Date().toLocaleDateString()
+  };
+
+  scoreHistory.unshift(entry);
+  // Sort by score, keep top 10
+  scoreHistory.sort((a, b) => b.score - a.score);
+  scoreHistory = scoreHistory.slice(0, 10);
+  localStorage.setItem('scoreHistory', JSON.stringify(scoreHistory));
+  updateScoreHistory();
+}
+
+// Updates the leaderboard display
+function updateScoreHistory() {
+  const display = document.getElementById('score-history');
+  if (scoreHistory.length === 0) {
+    display.textContent = 'no rounds played yet';
+    return;
+  }
+
+  display.innerHTML = scoreHistory.map((entry, i) =>
+    `<div class="history-entry">
+      <div class="history-top">
+        <span class="history-rank">#${i + 1}</span>
+        <span class="history-name">${entry.name}</span>
+        <span class="history-score">${entry.score}</span>
+      </div>
+      <div class="history-words">${entry.words.join(', ')}</div>
+      <div class="history-date">${entry.date}</div>
+    </div>`
+  ).join('');
+}
+
 
 // =============================================================
 // EVENT LISTENERS
 // =============================================================
-
-// ── Quickstart button ──────────────────────────────────────────
-// Automatically picks 3 vowels and 6 consonants, then starts the timer
-document.getElementById('quickstart-btn').addEventListener('click', function() {
-  // Reset first to clear any previous game
-  document.getElementById('reset-btn').click();
-
-  // Pick 3 vowels
-  for (let i = 0; i < 3; i++) {
-    document.getElementById('vowel-btn').click();
-  }
-
-  // Pick 6 consonants
-  for (let i = 0; i < 6; i++) {
-    document.getElementById('consonant-btn').click();
-  }
-
-  // Start the timer
-  startTimer();
-});
-
-// ── Keyboard support ───────────────────────────────────────────
-// Press Enter to submit a word instead of clicking Submit
-document.getElementById('player-word').addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-    document.getElementById('submit-btn').click();
-  }
-});
 
 // ── Vowel button ───────────────────────────────────────────────
 document.getElementById('vowel-btn').addEventListener('click', function() {
@@ -313,7 +332,6 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   const word = document.getElementById('player-word').value.trim().toLowerCase();
   if (word === '') return;
 
-  // Don't allow the same word twice
   if (submittedWords.includes(word)) {
     showFeedback('already submitted that word', false);
     return;
@@ -325,7 +343,6 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   if (inDictionary && usesValidLetters) {
     updateScore(word);
     submittedWords.push(word);
-    showFeedback(word.toUpperCase() + ' — ' + word.length + ' letters, +' + getPoints(word) + ' pts', true);
     document.getElementById('player-word').value = '';
     updateSubmittedWords();
   } else if (!usesValidLetters) {
@@ -335,11 +352,45 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   }
 });
 
+// ── Enter key to submit word ───────────────────────────────────
+document.getElementById('player-word').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    document.getElementById('submit-btn').click();
+  }
+});
+
 // ── Best Words button ──────────────────────────────────────────
 document.getElementById('best-words-btn').addEventListener('click', function() {
   const best    = findBestWords();
   const display = document.getElementById('best-words-list');
   display.textContent = best.length === 0 ? 'no words found' : best.join(', ');
+});
+
+// ── Save score button ──────────────────────────────────────────
+document.getElementById('save-score-btn').addEventListener('click', function() {
+  const name = document.getElementById('player-name').value.trim();
+  saveScoreHistory(name);
+  document.getElementById('save-score-form').classList.add('hidden');
+  document.getElementById('player-name').value = '';
+});
+
+// ── Enter key on name input ────────────────────────────────────
+document.getElementById('player-name').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('save-score-btn').click();
+});
+
+// ── Quickstart button ──────────────────────────────────────────
+document.getElementById('quickstart-btn').addEventListener('click', function() {
+  document.getElementById('reset-btn').click();
+
+  for (let i = 0; i < 3; i++) {
+    document.getElementById('vowel-btn').click();
+  }
+  for (let i = 0; i < 6; i++) {
+    document.getElementById('consonant-btn').click();
+  }
+
+  startTimer();
 });
 
 // ── Reset button ───────────────────────────────────────────────
@@ -361,8 +412,10 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   document.getElementById('pause-btn').textContent         = 'Pause';
   document.getElementById('player-word').value             = '';
   document.getElementById('best-words-list').textContent   = '';
-  document.getElementById('score-display').textContent     = 'Score: 0';
+  document.getElementById('score-display').textContent     = '0';
   document.getElementById('feedback').textContent          = '';
+  document.getElementById('save-score-form').classList.add('hidden');
+  document.getElementById('player-name').value             = '';
   document.getElementById('vowel-btn').disabled            = false;
   document.getElementById('consonant-btn').disabled        = false;
 
@@ -373,11 +426,25 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   timerMusic.currentTime = 0;
 });
 
+// ── Clear history button ───────────────────────────────────────
+document.getElementById('clear-history-btn').addEventListener('click', function() {
+  scoreHistory = [];
+  localStorage.removeItem('scoreHistory');
+  updateScoreHistory();
+});
+
 // ── Timer input ────────────────────────────────────────────────
-// Update timer display live as the player types a new time
 document.getElementById('timer-input').addEventListener('input', function() {
   const chosen = parseInt(this.value);
   if (!isNaN(chosen) && chosen >= 10) {
     document.getElementById('timer').textContent = chosen;
   }
 });
+
+
+// =============================================================
+// INITIALISE
+// =============================================================
+
+// Load leaderboard on page start
+updateScoreHistory();
