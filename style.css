@@ -462,3 +462,10 @@ a {
 }
 
 a:hover { opacity: 0.8; }
+
+/* ── Nav divider ───────────────────────────────────────────── */
+.nav-divider {
+  height: 1px;
+  background: rgba(180, 190, 254, 0.1);
+  margin: 12px 0;
+}
