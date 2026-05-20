@@ -100,7 +100,7 @@ let dictionary = new Set();
 
 // Fetch the word list file and load it into the Set
 // fetch() loads a file asynchronously (in the background)
-fetch('data/words.txt')
+fetch('data/words_filtered.txt')
   .then(response => response.text())   // read the file as text
   .then(text => {
     // Split the text into individual words (one per line)
@@ -187,4 +187,33 @@ document.getElementById('best-words-btn').addEventListener('click', function() {
   } else {
     display.textContent = best.join(', ');
   }
+});
+
+// ── Pause / Resume Timer ──────────────────────────────────────
+let isPaused = false;
+
+document.getElementById('pause-btn').addEventListener('click', function() {
+  if (isPaused) {
+    // Resume — restart the interval
+    isPaused = false;
+    this.textContent = 'Pause';
+    startTimer();
+    timerMusic.play();
+  } else {
+    // Pause — stop the interval without resetting
+    isPaused = true;
+    this.textContent = 'Resume';
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timerMusic.pause();
+  }
+});
+
+// ── Mute / Unmute Music ───────────────────────────────────────
+let isMuted = false;
+
+document.getElementById('mute-btn').addEventListener('click', function() {
+  isMuted = !isMuted;
+  timerMusic.muted = isMuted;
+  this.textContent = isMuted ? 'Unmute' : 'Mute';
 });
