@@ -131,12 +131,18 @@ function updateScore(word) {
   document.getElementById('score-display').textContent = `Score: ${score} (+${points})`;
 }
 
-// Starts the 30 second countdown
+// Starts the countdown
 function startTimer() {
   if (timerInterval !== null) return;
 
+  // Read the player's chosen time, fallback to 30 if invalid
+  const chosen = parseInt(document.getElementById('timer-input').value);
+  let timeLeft = isNaN(chosen) || chosen < 10 ? 30 : chosen;
+
+  // Update the display to match
+  document.getElementById('timer').textContent = timeLeft;
+
   timerMusic.play();
-  let timeLeft = 30;
 
   timerInterval = setInterval(function() {
     timeLeft--;
@@ -295,7 +301,8 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   updateSubmittedWords();
 
   document.getElementById('letter-board').innerHTML        = '';
-  document.getElementById('timer').textContent             = '30';
+  const chosen = parseInt(document.getElementById('timer-input').value);
+  document.getElementById('timer').textContent = isNaN(chosen) || chosen < 10 ? 30 : chosen;
   document.getElementById('pause-btn').textContent         = 'Pause';
   document.getElementById('player-word').value             = '';
   document.getElementById('best-words-list').textContent   = '';

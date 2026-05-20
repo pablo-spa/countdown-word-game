@@ -263,3 +263,21 @@ p {
   font-size: 0.9rem;
   letter-spacing: 1px;
 }
+
+input[type="number"] {
+  background: rgba(49, 50, 68, 0.5);
+  border: 1px solid rgba(180, 190, 254, 0.25);
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 12px;
+  width: 80px;
+  text-align: center;
+  outline: none;
+}
+
+label {
+  color: var(--subtext);
+  font-size: 0.9rem;
+}

@@ -1,7 +1,6 @@
 # Countdown Word Game — Project Notes
 
 ## Ideas & Future Features
-- Add a scoring system (points based on word length)
 - Add difficulty levels (e.g. time limit changes)
 - Add a way to suggest bugs directly form the webpage
 - Make it multiplayer?
@@ -11,7 +10,7 @@
 
 
 ## Bugs Found
-- 
+- when pasused and resumed, timer starts from 29 again?
 
 ## Analytics / Showcase Page Ideas
 - Bar chart of letter frequencies
