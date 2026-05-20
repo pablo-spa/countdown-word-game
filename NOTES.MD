@@ -8,6 +8,7 @@
 - Make it multiplayer?
 - Make it so i can submit multiple words
 - Frequency makes some letters apear to much?
+- Input timer by player
 
 
 
@@ -32,3 +33,5 @@
 - Python word list filtering (172k → 105k words)
 - Add so that letter can only repeat max 2 times
 - Change font to a codding font
+- Scoring System
+- No submissions if timer at start or end

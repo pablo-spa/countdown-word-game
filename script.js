@@ -248,6 +248,11 @@ document.getElementById('mute-btn').addEventListener('click', function() {
 
 // ── Submit button ──────────────────────────────────────────────
 document.getElementById('submit-btn').addEventListener('click', function() {
+   if (timerInterval === null && document.getElementById('timer').textContent !== '30') {
+    showFeedback('time is up!', false);
+    return;
+  }
+  
   const word = document.getElementById('player-word').value.trim().toLowerCase();
   if (word === '') return;
 

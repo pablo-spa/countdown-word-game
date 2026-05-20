@@ -7,19 +7,24 @@
     <title>Countdown Word Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-    <body>
+  <body>
     <h1>Countdown</h1>
 
     <div class="glass">
+
+      <!-- Letter selection -->
       <div class="controls">
         <button id="vowel-btn">Vowel</button>
         <button id="consonant-btn">Consonant</button>
       </div>
 
+      <!-- Letter tiles -->
       <div id="letter-board"></div>
 
+      <!-- Timer -->
       <div id="timer">30</div>
 
+      <!-- Timer controls -->
       <div class="controls">
         <button id="start-btn">Start</button>
         <button id="pause-btn">Pause</button>
@@ -27,21 +32,29 @@
         <button id="reset-btn">Reset</button>
       </div>
 
+      <!-- Word input -->
       <div class="controls">
         <input type="text" id="player-word" placeholder="Type your word..." />
         <button id="submit-btn">Submit</button>
-        <div id="feedback"></div>
-        <div id="submitted-words"></div>
       </div>
 
+      <!-- Feedback message (disappears after 2s) -->
+      <div id="feedback"></div>
+
+      <!-- Submitted words list (stays permanently) -->
+      <div id="submitted-words"></div>
+
+      <!-- Score -->
+      <div id="score-display">Score: 0</div>
+
+      <!-- Best words -->
       <button id="best-words-btn">Best Words</button>
       <div id="best-words-list"></div>
-      
-      <div id="score-display">Score: 0</div>
+
     </div>
 
     <a href="about.html">About this project →</a>
 
     <script src="script.js"></script>
-    </body>
+  </body>
 </html>
