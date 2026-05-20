@@ -18,24 +18,25 @@
     </div>
 
     <!-- Word list stats -->
-    <div class="glass">
-      <h2>The Word List</h2>
-      <p>The game validates words against the ENABLE dictionary — a public domain list of standard English words. The full list was filtered using Python to keep only words relevant to the game.</p>
-      <div class="stats-row">
-        <div class="stat-card">
-          <span class="stat-number">172,823</span>
-          <span class="stat-label">Original words</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">105,241</span>
-          <span class="stat-label">After filtering (2–9 letters)</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">39%</span>
-          <span class="stat-label">File size reduction</span>
-        </div>
-      </div>
+   <div class="glass">
+  <h2>The Word List</h2>
+  <p>The game validates words against the ENABLE dictionary — a public domain list of standard English words. The full list was filtered twice using Python to keep only words relevant to the game.</p>
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-number">172,823</span>
+      <span class="stat-label">Original words</span>
     </div>
+    <div class="stat-card">
+      <span class="stat-number">105,241</span>
+      <span class="stat-label">After length filter (2–9 letters)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">96,963</span>
+      <span class="stat-label">After repeat filter (max 2 of each letter)</span>
+    </div>
+  </div>
+  <p style="margin-top: 16px;">The second filter removes words where any letter appears more than twice — matching the game rule that no letter can be picked more than twice. This removed a further 8,278 words.</p>
+</div>
 
     <!-- Letter frequency chart -->
     <div class="glass">
