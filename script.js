@@ -236,6 +236,9 @@ document.getElementById('start-btn').addEventListener('click', startTimer);
 
 // ── Pause / Resume button ──────────────────────────────────────
 document.getElementById('pause-btn').addEventListener('click', function() {
+  // Don't do anything if no game is running
+  if (selectedLetters.length < 9 && !isPaused && timerInterval === null) return;
+  
   if (isPaused) {
     isPaused         = false;
     this.textContent = 'Pause';
