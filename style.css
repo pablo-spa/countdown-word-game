@@ -31,7 +31,7 @@ body {
     radial-gradient(ellipse at 20% 20%, rgba(203,166,247,0.08) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 80%, rgba(137,180,250,0.08) 0%, transparent 60%);
   color: var(--text);
-  font-family: 'Georgia', serif;
+  font-family: 'JetBrains Mono', monospace;
   display: flex;
   flex-direction: column;
   align-items: center;
