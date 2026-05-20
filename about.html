@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <title>Countdown — About</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
@@ -18,30 +18,34 @@
     </div>
 
     <!-- Word list stats -->
-   <div class="glass">
-  <h2>The Word List</h2>
-  <p>The game validates words against the ENABLE dictionary — a public domain list of standard English words. The full list was filtered twice using Python to keep only words relevant to the game.</p>
-  <div class="stats-row">
-    <div class="stat-card">
-      <span class="stat-number">172,823</span>
-      <span class="stat-label">Original words</span>
+    <div class="glass">
+      <h2>The Word List</h2>
+      <p>The game validates words against the ENABLE dictionary — a public domain list of standard English words. The full list was filtered three times using Python to keep only words that can actually be formed under the game rules.</p>
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-number">172,823</span>
+          <span class="stat-label">Original words</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">105,241</span>
+          <span class="stat-label">After length filter (2–9 letters)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">96,963</span>
+          <span class="stat-label">After repeat filter (max 2 of each letter)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">94,554</span>
+          <span class="stat-label">After game limits filter (max 5 vowels, max 6 consonants)</span>
+        </div>
+      </div>
+      <p style="margin-top: 16px;">Each filter mirrors a game rule — so every word in the final list can actually appear as a valid answer during play. The three filters together removed 78,269 words from the original dictionary.</p>
     </div>
-    <div class="stat-card">
-      <span class="stat-number">105,241</span>
-      <span class="stat-label">After length filter (2–9 letters)</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-number">96,963</span>
-      <span class="stat-label">After repeat filter (max 2 of each letter)</span>
-    </div>
-  </div>
-  <p style="margin-top: 16px;">The second filter removes words where any letter appears more than twice — matching the game rule that no letter can be picked more than twice. This removed a further 8,278 words.</p>
-</div>
 
     <!-- Letter frequency chart -->
     <div class="glass">
       <h2>Letter Frequency Analysis</h2>
-      <p>Each letter's probability was calculated by counting its occurrences across all 105,241 words. The picker uses these weights so common letters appear more often.</p>
+      <p>Each letter's probability was calculated by counting its occurrences across all 94,554 words. The picker uses these weights so common letters appear more often.</p>
       <canvas id="letterChart"></canvas>
     </div>
 
