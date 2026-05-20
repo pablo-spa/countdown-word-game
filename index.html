@@ -9,75 +9,80 @@
   </head>
   <body>
 
-    <nav>
-      <a href="index.html">Game</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="page-layout">
 
-    <h1>Countdown</h1>
-
-    <div class="main-layout">
-
-      <!-- ── Game card ── -->
-      <div class="glass">
-
-        <div class="controls">
-          <button id="vowel-btn">Vowel</button>
-          <button id="consonant-btn">Consonant</button>
-          <button id="quickstart-btn">Quickstart</button>
-        </div>
-
-        <div id="letter-board"></div>
-
-        <div class="controls">
-          <label for="timer-input">Time (seconds):</label>
-          <input type="number" id="timer-input" value="30" min="10" max="300" placeholder="30" />
-        </div>
-
-        <div id="timer">30</div>
-
-        <div class="controls">
-          <button id="start-btn">Start</button>
-          <button id="pause-btn">Pause</button>
-          <button id="mute-btn">Mute</button>
-          <button id="reset-btn">Reset</button>
-        </div>
-
-        <div class="controls">
-          <input type="text" id="player-word" placeholder="Type your word..." />
-          <button id="submit-btn">Submit</button>
-        </div>
-
-        <div id="feedback"></div>
-
-        <div class="bottom-row">
-          <div class="bottom-col">
-            <div class="col-label">submitted</div>
-            <div id="submitted-words"></div>
-          </div>
-          <div class="bottom-col">
-            <div class="col-label">best words</div>
-            <div id="best-words-list"></div>
-            <button id="best-words-btn">Show</button>
-          </div>
-          <div class="bottom-col center">
-            <div class="col-label">score</div>
-            <div id="score-display">0</div>
-          </div>
-        </div>
-
-        <!-- Name input — shown after round ends -->
-        <div id="save-score-form" class="hidden">
-          <div class="col-label">save your score</div>
-          <div class="controls">
-            <input type="text" id="player-name" placeholder="Your name..." maxlength="20" />
-            <button id="save-score-btn">Save</button>
-          </div>
-        </div>
-
+      <!-- ── Left nav sidebar ── -->
+      <div class="glass side-panel">
+        <div class="nav-title">Menu</div>
+        <nav>
+          <a href="index.html" class="nav-link active">Game</a>
+          <a href="about.html" class="nav-link">About</a>
+        </nav>
       </div>
 
-      <!-- ── Leaderboard side panel ── -->
+      <!-- ── Main game area ── -->
+      <div class="main-area">
+        <h1>Countdown</h1>
+
+        <div class="glass">
+
+          <div class="controls">
+            <button id="vowel-btn">Vowel</button>
+            <button id="consonant-btn">Consonant</button>
+            <button id="quickstart-btn">Quickstart</button>
+          </div>
+
+          <div id="letter-board"></div>
+
+          <div class="controls">
+            <label for="timer-input">Time (s):</label>
+            <input type="number" id="timer-input" value="30" min="10" max="300" placeholder="30" />
+          </div>
+
+          <div id="timer">30</div>
+
+          <div class="controls">
+            <button id="start-btn">Start</button>
+            <button id="pause-btn">Pause</button>
+            <button id="mute-btn">Mute</button>
+            <button id="reset-btn">Reset</button>
+          </div>
+
+          <div class="controls">
+            <input type="text" id="player-word" placeholder="Type your word..." />
+            <button id="submit-btn">Submit</button>
+          </div>
+
+          <div id="feedback"></div>
+
+          <div class="bottom-row">
+            <div class="bottom-col">
+              <div class="col-label">submitted</div>
+              <div id="submitted-words"></div>
+            </div>
+            <div class="bottom-col">
+              <div class="col-label">best words</div>
+              <div id="best-words-list"></div>
+              <button id="best-words-btn">Show</button>
+            </div>
+            <div class="bottom-col center">
+              <div class="col-label">score</div>
+              <div id="score-display">0</div>
+            </div>
+          </div>
+
+          <div id="save-score-form" class="hidden">
+            <div class="col-label">save your score</div>
+            <div class="controls">
+              <input type="text" id="player-name" placeholder="Your name..." maxlength="20" />
+              <button id="save-score-btn">Save</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Right leaderboard sidebar ── -->
       <div class="glass side-panel">
         <h2>Leaderboard</h2>
         <div id="score-history">no rounds played yet</div>
