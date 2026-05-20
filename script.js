@@ -20,6 +20,7 @@ let isPaused        = false;
 let isMuted         = false;
 let submittedWords = [];
 let timeRemaining = null;
+let gameActive = false;
 
 // ── Audio ──────────────────────────────────────────────────────
 const timerMusic = new Audio('timer-music.mp3');
@@ -142,6 +143,8 @@ function startTimer(startFrom = null) {
     return;
   }
 
+  gameActive = true;
+
   const chosen = parseInt(document.getElementById('timer-input').value);
   let timeLeft = startFrom !== null ? startFrom : (isNaN(chosen) || chosen < 10 ? 30 : chosen);
 
@@ -160,6 +163,7 @@ function startTimer(startFrom = null) {
       timerMusic.currentTime = 0;
       document.getElementById('vowel-btn').disabled     = true;
       document.getElementById('consonant-btn').disabled = true;
+      document.getElementById('timer').textContent = 'done';
     }
   }, 1000);
 }
@@ -238,7 +242,7 @@ document.getElementById('start-btn').addEventListener('click', startTimer);
 document.getElementById('pause-btn').addEventListener('click', function() {
   // Don't do anything if no game is running
   if (selectedLetters.length < 9 && !isPaused && timerInterval === null) return;
-  
+
   if (isPaused) {
     isPaused         = false;
     this.textContent = 'Pause';
@@ -262,10 +266,11 @@ document.getElementById('mute-btn').addEventListener('click', function() {
 
 // ── Submit button ──────────────────────────────────────────────
 document.getElementById('submit-btn').addEventListener('click', function() {
-   if (timerInterval === null && document.getElementById('timer').textContent !== '30') {
-    showFeedback('time is up!', false);
+   if (!gameActive) {
+    showFeedback('start the game first!', false);
     return;
   }
+  
 
   const word = document.getElementById('player-word').value.trim().toLowerCase();
   if (word === '') return;
