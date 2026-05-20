@@ -92,3 +92,55 @@ function startTimer() {
 
 // Listen for the Start Timer button
 document.getElementById('start-btn').addEventListener('click', startTimer);
+
+// ── Dictionary ────────────────────────────────────────────────
+// We'll store all valid words in a Set (like an array but much
+// faster for checking if a word exists)
+let dictionary = new Set();
+
+// Fetch the word list file and load it into the Set
+// fetch() loads a file asynchronously (in the background)
+fetch('data/words.txt')
+  .then(response => response.text())   // read the file as text
+  .then(text => {
+    // Split the text into individual words (one per line)
+    // and add each one to our Set
+    text.split('\n').forEach(word => {
+      dictionary.add(word.trim().toLowerCase());
+    });
+    console.log('Dictionary loaded:', dictionary.size, 'words');
+  });
+
+// ── Word validation ───────────────────────────────────────────
+// Check if the player's word only uses available letters
+function isValidLetterUse(word, letters) {
+  // Make a copy of the letters array so we can remove letters as we use them
+  let available = [...letters];
+
+  for (let char of word.toUpperCase()) {
+    let index = available.indexOf(char);
+    // If the letter isn't available, the word is invalid
+    if (index === -1) return false;
+    // Remove the used letter so it can't be used twice
+    available.splice(index, 1);
+  }
+  return true;
+}
+
+// ── Submit button ─────────────────────────────────────────────
+document.getElementById('submit-btn').addEventListener('click', function() {
+  const word = document.getElementById('player-word').value.trim().toLowerCase();
+
+  if (word === '') return;
+
+  const inDictionary = dictionary.has(word);
+  const usesValidLetters = isValidLetterUse(word, selectedLetters);
+
+  if (inDictionary && usesValidLetters) {
+    alert('✅ Valid word! ' + word.length + ' letters');
+  } else if (!usesValidLetters) {
+    alert('❌ You used letters that aren\'t on the board!');
+  } else {
+    alert('❌ Not a valid English word');
+  }
+});
