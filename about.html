@@ -5,16 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Countdown — About</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <h1>Behind the Game</h1>
 
+    <!-- Project overview -->
+    <div class="glass">
+      <h2>What is this?</h2>
+      <p>A browser-based Countdown word game built as a coding practice project. The game uses a weighted letter picker backed by real English word frequency data, analysed with Python.</p>
+    </div>
+
+    <!-- Word list stats -->
+    <div class="glass">
+      <h2>The Word List</h2>
+      <p>The game validates words against the ENABLE dictionary — a public domain list of standard English words. The full list was filtered using Python to keep only words relevant to the game.</p>
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-number">172,823</span>
+          <span class="stat-label">Original words</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">105,241</span>
+          <span class="stat-label">After filtering (2–9 letters)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">39%</span>
+          <span class="stat-label">File size reduction</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letter frequency chart -->
     <div class="glass">
       <h2>Letter Frequency Analysis</h2>
-      <p>Letter weights were calculated by analysing 105,241 English words.</p>
+      <p>Each letter's probability was calculated by counting its occurrences across all 105,241 words. The picker uses these weights so common letters appear more often.</p>
       <canvas id="letterChart"></canvas>
+    </div>
+
+    <!-- How the weighting works -->
+    <div class="glass">
+      <h2>How Weighted Picking Works</h2>
+      <p>Instead of picking randomly from a flat list, the game assigns each letter a weight proportional to its frequency. A random point is chosen along the total weight, and we walk through the letters until we hit it — meaning E (11.8%) is picked far more often than Q (0.18%).</p>
     </div>
 
     <a href="index.html">← Back to Game</a>

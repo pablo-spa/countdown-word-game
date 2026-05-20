@@ -7,7 +7,7 @@ fetch('data/letter_weights.json')
     const labels = sorted.map(entry => entry[0]);
     const values = sorted.map(entry => entry[1]);
 
-    // Draw the bar chart
+    // Draw the bar chart with Catppuccin Mocha colours
     const ctx = document.getElementById('letterChart').getContext('2d');
     new Chart(ctx, {
       type: 'bar',
@@ -16,18 +16,35 @@ fetch('data/letter_weights.json')
         datasets: [{
           label: 'Letter frequency (%)',
           data: values,
-          backgroundColor: 'rgba(180, 190, 254, 0.5)',
-          borderColor: 'rgba(180, 190, 254, 1)',
-          borderWidth: 1
+          backgroundColor: labels.map((_, i) =>
+            i < 5 ? 'rgba(203,166,247,0.7)' :   // top 5 in mauve
+            i < 10 ? 'rgba(137,180,250,0.7)' :  // next 5 in blue
+            'rgba(148,226,213,0.4)'              // rest in teal
+          ),
+          borderColor: 'rgba(180,190,254,0.3)',
+          borderWidth: 1,
+          borderRadius: 6
         }]
       },
       options: {
+        responsive: true,
         plugins: {
           legend: { labels: { color: '#cdd6f4' } }
         },
         scales: {
-          x: { ticks: { color: '#cdd6f4' }, grid: { color: '#313244' } },
-          y: { ticks: { color: '#cdd6f4' }, grid: { color: '#313244' } }
+          x: {
+            ticks: { color: '#cdd6f4' },
+            grid: { color: 'rgba(69,71,90,0.5)' }
+          },
+          y: {
+            ticks: { color: '#cdd6f4' },
+            grid: { color: 'rgba(69,71,90,0.5)' },
+            title: {
+              display: true,
+              text: 'Frequency (%)',
+              color: '#a6adc8'
+            }
+          }
         }
       }
     });
