@@ -1,13 +1,13 @@
 # Countdown Word Game — Project Notes
 
 ## Ideas & Future Features
-- Add difficulty levels (e.g. time limit changes)
 - Add a way to suggest bugs directly form the webpage
 - Make it multiplayer?
 - Frequency makes some letters apear to much?
 - Input timer by player
-
-
+- add a quickstart button that chooses some random letters
+- keyboard support
+- more python analysis
 
 ## Bugs Found
 - when pasused and resumed, timer starts from 29 again?
@@ -34,3 +34,4 @@
 - No submissions if timer at start or end
 - Make it so i can submit multiple words
 - Show the player's score history
+- time limit changes

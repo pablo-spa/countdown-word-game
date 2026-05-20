@@ -200,6 +200,34 @@ function updateSubmittedWords() {
 // EVENT LISTENERS
 // =============================================================
 
+// ── Quickstart button ──────────────────────────────────────────
+// Automatically picks 3 vowels and 6 consonants, then starts the timer
+document.getElementById('quickstart-btn').addEventListener('click', function() {
+  // Reset first to clear any previous game
+  document.getElementById('reset-btn').click();
+
+  // Pick 3 vowels
+  for (let i = 0; i < 3; i++) {
+    document.getElementById('vowel-btn').click();
+  }
+
+  // Pick 6 consonants
+  for (let i = 0; i < 6; i++) {
+    document.getElementById('consonant-btn').click();
+  }
+
+  // Start the timer
+  startTimer();
+});
+
+// ── Keyboard support ───────────────────────────────────────────
+// Press Enter to submit a word instead of clicking Submit
+document.getElementById('player-word').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    document.getElementById('submit-btn').click();
+  }
+});
+
 // ── Vowel button ───────────────────────────────────────────────
 document.getElementById('vowel-btn').addEventListener('click', function() {
   if (selectedLetters.length >= 9) return;
