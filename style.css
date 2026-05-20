@@ -86,4 +86,96 @@ button {
 }
 
 button:hover {
-  background: rgba(180, 190, 254, 0
+  background: rgba(180, 190, 254, 0.25);
+  border-color: rgba(180, 190, 254, 0.5);
+  box-shadow: 0 0 16px rgba(180, 190, 254, 0.2);
+}
+
+button:disabled {
+  background: rgba(108, 112, 134, 0.1);
+  color: var(--overlay);
+  border-color: rgba(108, 112, 134, 0.2);
+  cursor: not-allowed;
+}
+
+/* ── Controls ──────────────────────────────────────────────── */
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Letter board ──────────────────────────────────────────── */
+#letter-board {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 90px;
+}
+
+.tile {
+  width: 72px;
+  height: 72px;
+  /* Each tile is its own glass panel */
+  background: rgba(249, 226, 175, 0.12);
+  border: 1px solid rgba(249, 226, 175, 0.3);
+  backdrop-filter: blur(12px);
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 14px;
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* ── Timer ─────────────────────────────────────────────────── */
+#timer {
+  font-size: 5rem;
+  font-weight: bold;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, var(--peach), var(--yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 10px 0;
+}
+
+/* ── Player input ──────────────────────────────────────────── */
+input[type="text"] {
+  background: rgba(49, 50, 68, 0.5);
+  border: 1px solid rgba(180, 190, 254, 0.25);
+  color: var(--text);
+  padding: 12px 18px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  margin: 10px 5px;
+  width: 260px;
+  backdrop-filter: blur(10px);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+  border-color: rgba(180, 190, 254, 0.6);
+  box-shadow: 0 0 12px rgba(180, 190, 254, 0.15);
+}
+
+input[type="text"]::placeholder {
+  color: var(--overlay);
+}
+
+/* ── Best words ────────────────────────────────────────────── */
+#best-words-list {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: var(--teal);
+  letter-spacing: 3px;
+}
