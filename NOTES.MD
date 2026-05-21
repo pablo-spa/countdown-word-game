@@ -6,7 +6,6 @@
 - Frequency makes some letters apear to much?
 - Input timer by player
 - add a quickstart button that chooses some random letters
-- keyboard support
 - more python analysis
 
 ## Bugs Found
@@ -35,3 +34,4 @@
 - Make it so i can submit multiple words
 - Show the player's score history
 - time limit changes
+- keyboard support

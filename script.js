@@ -450,6 +450,22 @@ document.getElementById('nav-close-btn').addEventListener('click', function() {
   document.getElementById('nav-overlay').classList.add('hidden');
 });
 
+// ── Auto-focus word input when typing letters ──────────────
+// If the user presses any letter key and isn't already typing
+// in an input field, jump focus straight to the word input.
+document.addEventListener('keydown', function(e) {
+
+  // ignore if already typing in any input field
+  const activeTag = document.activeElement.tagName;
+  if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+
+  // only react to single letter keys (a–z), ignore Enter, Shift, etc.
+  if (e.key.length === 1 && /[a-zA-Z]/.test(e.key)) {
+    document.getElementById('player-word').focus();
+    // don't call e.preventDefault() — let the letter land in the input naturally
+  }
+
+});
 
 // =============================================================
 // INITIALISE
