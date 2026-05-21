@@ -1,20 +1,16 @@
 # Countdown Word Game — Project Notes
 
 ## Ideas & Future Features
-- Add a way to suggest bugs directly form the webpage
 - Make it multiplayer?
-- Frequency makes some letters apear to much?
-- Input timer by player
-- add a quickstart button that chooses some random letters
 - more python analysis
+- add screen celebrations
+- change music
 
 ## Bugs Found
-- when pasused and resumed, timer starts from 29 again?
+
 
 ## Analytics / Showcase Page Ideas
-- Bar chart of letter frequencies
-- Most common 9-letter words
-- Show the weighted vs unweighted letter distribution
+
 
 ## Done
 - Weighted letter picker using Python analysis
@@ -35,3 +31,11 @@
 - Show the player's score history
 - time limit changes
 - keyboard support
+- Input timer by player
+- add a quickstart button that chooses some random letters
+- Add a way to suggest bugs directly form the webpage
+- Frequency makes some letters apear to much?
+- Show the weighted vs unweighted letter distribution
+- Bar chart of letter frequencies
+- Most common 9-letter words
+- when pasused and resumed, timer starts from 29 again?
